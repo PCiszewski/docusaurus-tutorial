@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Autoryzacja i testowanie połączenia · Test Site</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Autoryzacja wywołań REST odbywa się za pomocą standardu basicAuth gdzie login to Id konta w systemie Przelewy24 a hasło to klucz API z zakładki &quot;Moje dane&quot; z panelu Przelewy24"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Autoryzacja i testowanie połączenia · Test Site"/><meta property="og:type" content="website"/><meta property="og:url" content="https://PCiszewski.github.io/docusaurus-tutorial/"/><meta property="og:description" content="Autoryzacja wywołań REST odbywa się za pomocą standardu basicAuth gdzie login to Id konta w systemie Przelewy24 a hasło to klucz API z zakładki &quot;Moje dane&quot; z panelu Przelewy24"/><meta property="og:image" content="https://PCiszewski.github.io/docusaurus-tutorial/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://PCiszewski.github.io/docusaurus-tutorial/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docusaurus-tutorial/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://PCiszewski.github.io/docusaurus-tutorial/blog/atom.xml" title="Test Site Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://PCiszewski.github.io/docusaurus-tutorial/blog/feed.xml" title="Test Site Blog RSS Feed"/><link rel="stylesheet" href="/css/code-block-buttons.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script><script type="text/javascript" src="/docusaurus-tutorial/js/code-block-buttons.js"></script><script src="/docusaurus-tutorial/js/scrollSpy.js"></script><link rel="stylesheet" href="/docusaurus-tutorial/css/main.css"/><script src="/docusaurus-tutorial/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docusaurus-tutorial/"><img class="logo" src="/docusaurus-tutorial/img/favicon.ico" alt="Test Site"/><h2 class="headerTitleWithLogo">Test Site</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docusaurus-tutorial/docs/doc1" target="_self">Docs</a></li><li class=""><a href="/docusaurus-tutorial/docs/doc4" target="_self">API</a></li><li class=""><a href="/docusaurus-tutorial/help" target="_self">Help</a></li><li class=""><a href="/docusaurus-tutorial/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Przelewy24</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docusaurus</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docusaurus-tutorial/docs/doc1">Example Page</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">First Category</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docusaurus-tutorial/docs/doc2">document number 2</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Second Category</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docusaurus-tutorial/docs/doc3">This is document number 3</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Przelewy24</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docusaurus-tutorial/docs/doc6">Autoryzacja i testowanie połączenia</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Autoryzacja i testowanie połączenia</h1></header><article><div><span><p>Autoryzacja wywołań REST odbywa się za pomocą standardu basicAuth gdzie login to Id konta w systemie Przelewy24 a hasło to klucz API z zakładki &quot;Moje dane&quot; z panelu Przelewy24
+Aby przetestować połączenie z systemem Przelewy24 można wykorzystać operację:</p>
+<pre><code class="hljs">GET <span class="hljs-symbol">https:</span>/<span class="hljs-regexp">/secure.przelewy24.pl/api</span><span class="hljs-regexp">/v1/test</span>Access
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="poprawna-odpowiedź-200"></a><a href="#poprawna-odpowiedź-200" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Poprawna odpowiedź (200):</h2>
+<pre><code class="hljs">{
+<span class="hljs-attr">"data"</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-attr">"error"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="błędna-odpowiedź"></a><a href="#błędna-odpowiedź" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Błędna odpowiedź:</h2>
+<pre><code class="hljs">{
+<span class="hljs-attr">"error"</span>: <span class="hljs-string">"Incorrect authentication"</span>,
+<span class="hljs-attr">"code"</span>: <span class="hljs-number">401</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="test"></a><a href="#test" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test</h2>
+<p><code>Use `code` in your Markdown file.</code></p>
+<p><code>Kolejny kod</code></p>
+<pre><code class="hljs css language-json">{
+<span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"John"</span>,
+<span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Smith"</span>,
+<span class="hljs-attr">"age"</span>: <span class="hljs-number">256</span>
+}
+</code></pre>
+<pre><code class="hljs css language-cmd">node -v
+v8.<span class="hljs-number">15</span>.<span class="hljs-number">1</span>
+</code></pre>
+<p><del>To jest przekreślony tekst</del></p>
+<div class="tabs"><div class="nav-tabs"><div id="tab-group-1-tab-2" class="nav-link active" data-group="group_1" data-tab="tab-group-1-content-2">JavaScript</div><div id="tab-group-1-tab-3" class="nav-link" data-group="group_1" data-tab="tab-group-1-content-3">Python</div><div id="tab-group-1-tab-4" class="nav-link" data-group="group_1" data-tab="tab-group-1-content-4">C</div><div id="tab-group-1-tab-5" class="nav-link" data-group="group_1" data-tab="tab-group-1-content-5">Pascal</div></div><div class="tab-content"><div id="tab-group-1-content-2" class="tab-pane active" data-group="group_1" tabindex="-1"><div><span><pre><code class="hljs css language-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, world!'</span>);<br /></code></pre>
+</span></div></div><div id="tab-group-1-content-3" class="tab-pane" data-group="group_1" tabindex="-1"><div><span><pre><code class="hljs css language-py">print(<span class="hljs-string">'Hello, world!'</span>)<br /></code></pre>
+</span></div></div><div id="tab-group-1-content-4" class="tab-pane" data-group="group_1" tabindex="-1"><div><span><pre><code class="hljs css language-C"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br /><br /><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{<br /><span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello World!"</span>);<br /><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br />}<br /></code></pre>
+</span></div></div><div id="tab-group-1-content-5" class="tab-pane" data-group="group_1" tabindex="-1"><div><span><pre><code class="hljs css language-Pascal"><span class="hljs-keyword">program</span> HelloWorld;<br /><span class="hljs-keyword">begin</span><br />WriteLn(<span class="hljs-string">'Hello, world!'</span>);<br /><span class="hljs-keyword">end</span>.<br /></code></pre>
+</span></div></div></div></div></span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docusaurus-tutorial/docs/doc3"><span class="arrow-prev">← </span><span>This is document number 3</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#poprawna-odpowiedź-200">Poprawna odpowiedź (200):</a></li><li><a href="#błędna-odpowiedź">Błędna odpowiedź:</a></li><li><a href="#test">Test</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docusaurus-tutorial/" class="nav-home"><img src="/docusaurus-tutorial/img/favicon.ico" alt="Test Site" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docusaurus-tutorial/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docusaurus-tutorial/docs/en/doc2.html">Guides (or other categories)</a><a href="/docusaurus-tutorial/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/docusaurus-tutorial/en/users.html">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/docusaurus-tutorial/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docusaurus-tutorial/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2019 Your Name or Your Company Name</section></footer></div></body></html>
